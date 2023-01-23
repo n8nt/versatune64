@@ -1,0 +1,1 @@
+-Dspring.profiles.active=dev -Dspring.config.additional-location=/usr/local/apps/barretthill/conf/

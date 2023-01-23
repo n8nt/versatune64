@@ -1,0 +1,160 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- If we need to redirect somewhere use the following line after uncommenting it. -->
+    <!--    <meta http-equiv="refresh" content="0 ;url='https://www.datv-express.com/'"/>-->
+    <title>Display Versatuen Channels</title>
+
+    <!-- include CSS in the header -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/templates.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+
+</head>
+<body>
+<div class="mainContainer" style="margin: auto; width: auto;">
+    <div class="text-center" id="top-section">
+        <h1>EDIT VERSATUNE CHANNEL DEFINITION</h1>
+        <p></p>
+        <p><span th:text="${topText}"></span></p>
+    </div>
+
+
+    <div>
+        <h1 class="text-center">Create New Channel</h1>
+        <br/>
+        <form action="#" th:action="@{/save}" th:object="${channel}"
+              method="post">
+
+            <table class="table-responsive, table-striped" >
+                <tr>
+                    <td>SCAN CHANNEL</td>
+                    <td>
+                        <select th:field="*{channel}">
+                            <option th:each="tunerchannel : ${tunerchannels}" th:value="${tunerchannel}" th:text="${tunerchannel}">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>FREQ (KHZ)</td>
+                    <td>
+                        <select th:field="*{frequency}">
+                            <option th:each="freq : ${frequencies}" th:value="${freq}" th:text="${freq}">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>BW (KHZ)</td>
+                    <td>
+                    <select th:field="*{bandwidth}">
+                        <option th:each="bw : ${bandwidths}" th:value="${bw}" th:text="${bw}">
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SYMB(KHZ)</td>
+                    <td>
+                        <select th:field="*{symbolRate}">
+                            <option th:each="symb : ${symbolRates}" th:value="${symb}" th:text="${symb}">
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>FEC</td>
+                    <td>
+                        <select th:field="*{fec}">
+                            <option th:each="fec : ${fecList}" th:value="${fec}" th:text="${fec}">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>INPUT</td>
+                    <td>
+                        <select th:field="*{inputDevice}">
+                            <option th:each="input : ${inputs}" th:value="${input}" th:text="${input}">
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>PID_AUD</td>
+                    <td>
+                        <select th:field="*{pidAudio}">
+                            <option th:each="pida : ${pidas}" th:value="${pida}" th:text="${pida}">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>PID_VID</td>
+                    <td>
+                    <select th:field="*{pidVideo}">
+                        <option th:each="pidv : ${pidvs}" th:value="${pidv}" th:text="${pidv}">
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>LNB_13V</td>
+                    <td>
+                        <select th:field="*{lnb_13v}">
+                            <option th:each="flag : ${flags}" th:value="${flag}" th:text="${flag}">
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>LNB_18V</td>
+                    <td>
+                        <select th:field="*{lnb_18v}">
+                            <option th:each="flag : ${flags}" th:value="${flag}" th:text="${flag}">
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>LNB_22KHZ</td>
+                    <td>
+                        <select th:field="*{khz_22}">
+                            <option th:each="flag : ${flags}" th:value="${flag}" th:text="${flag}">
+                        </select>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>ENABLED</td>
+                    <td>
+                        <select th:field="*{enableChan}">
+                            <option th:each="flag : ${flags}"  th:value="${flag}" th:text="${flag}">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Save</button>
+                    </td>
+                    <td colspan="2">
+                        <a href="/" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>&nbsp;Back to List</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="bottom-section" class="align-content-center">
+        <h2 class="text-center">Bottom</h2>
+        <p class="text-center"><span th:text="${bottomText}"></span></p>
+    </div>
+</div>
+</div>
+</main>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/5.2.2/js/bootstrap.min.js}"></script>
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <!-- If we need to redirect somewhere use the following line after uncommenting it. -->
+  <!--    <meta http-equiv="refresh" content="0 ;url='https://www.datv-express.com/'"/>-->
+  <title>Display Versatuen Channels</title>
+
+  <!-- include CSS in the header -->
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/templates.css}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+
+</head>
+<body>
+<main role="main" class="container" style="margin: auto; width: auto;">
+  <div id="page-container">
+    <div id="content-wrap">
+      <div id="top-section" class="align-content-center">
+        <h2 class="text-center">Top</h2>
+        <p class="text-center"><span th:text="${topText}"></span></p>
+      </div>
+      <div id="middle-section" class="align-content-center">
+        <h2 class="text-center">Channel List</h2>
+        <a href="/new">Add New Channel</a>
+        <br/>
+        <table class="table-bordered" class="table-striped" >
+          <thead>
+            <tr>
+              <th>CHAN</th>
+              <th>FREQ</th>
+              <th>SYMB</th>
+              <th>BW</th>
+              <th>FEC</th>
+              <th>INPUT</th>
+              <th>PID_AUD</th>
+              <th>PID_VID</th>
+              <th>LNB_13V</th>
+              <th>LNB_18V</th>
+              <th>LNB_22KHZ</th>
+              <th>ENABLED</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="channel : ${listChannels}">
+<!--              <td th:text="${channel.channel}">CHAN</td>-->
+<!--              <td th:text="${channel.frequency}">FREQ</td>-->
+<!--              <td th:text="${channel.symbolRate}">SYMB</td>-->
+<!--              <td th:text="${channel.bandwidth}">BW</td>-->
+<!--              <td th:text="${channel.rec}">REC</td>-->
+<!--              <td th:text="${channel.inputDevice}">INPUT</td>-->
+<!--              <td th:text="${channel.pidAudio}">PID_AUD</td>-->
+<!--              <td th:text="${channel.pidVideo}">PID_VID</td>-->
+<!--              <td th:text="${channel.lnb_13v}">LNB_13v</td>-->
+<!--              <td th:text="${channel.lnb_18v}">LNB_18V</td>-->
+<!--              <td th:text="${channel.khz_22}">LNB_22KHZ</td>-->
+<!--              <td th:text="${channel.enableChan}">ENABLED</td>-->
+<!--              <td>-->
+<!--                <a th:href="/@{'/edit/' + ${channel.id}}">Edit</a>-->
+<!--                &nbsp;&nbsp;&nbsp;-->
+<!--                <a th:href="/@{'/delete/' + ${channel.id}}">Delete</a>-->
+<!--              </td>-->
+
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div id="bottom-section" class="align-content-center">
+        <h2  class="text-center">Bottom</h2>
+        <p class="text-center"><span th:text="${bottomText}"></span></p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/5.2.2/js/bootstrap.min.js}"></script>
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+DROP TABLE IF EXISTS RCVR_SIGNALS;
+CREATE TABLE RCVR_SIGNALS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ssi VARCHAR(250) NOT NULL,
+    sqi VARCHAR(250) NOT NULL,
+    snr VARCHAR(250) NOT NULL,
+    per VARCHAR(250) NOT NULL),
+    ready BIT NOT NULL
+);
+
+DROP TABLE IF EXISTS TUNERSETUPRECORD;
+CREATE TABLE TUNERSETUPRECORD (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    enableChannel BIT NOT NULL,
+    lnb_13v BIT NOT NULL,
+    lnb_18v BIT NOT NULL,
+    khz22 NOT NULL,
+    channel int NOT NULL,
+    frequency INT NOT NULL,
+    symbolRate INT NOT NULL,
+    bandwidth INT NOT NULL,
+    rec INT NOT NULL,
+    pid_audio VARCHAR(256) NOT NULL,
+    pid_video VARCHAR(256) NOT NULL,
+    inputDevice VARCHAR(250) NOT NULL),
+    ready BIT NOT NULL
+);
+
+DROP TABLE IF EXISTS TUNERSETUPRECORD;
+CREATE TABLE TUNERSETUPRECORD (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    enableChannel BIT,
+    lnb_13v BIT,
+    lnb_18v BIT,
+    khz22 BIT,
+    channel int,
+    frequency INT,
+    symbolRate INT,
+    bandwidth INT,
+    rec INT,
+    pid_audio VARCHAR(256),
+    pid_video VARCHAR(256),
+    inputDevice VARCHAR(250)),
+    ready BIT
+);
+
+

@@ -1,0 +1,43 @@
+html, body{
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer{
+    flex: none;
+    background-color: #ccffcc;
+}
+
+#page-container{
+    position: relative;
+    min-heithg: 100%;
+}
+
+#content-wrap {
+    padding-bottom: 10.0rem;
+    color: purple;
+}
+#top-section {
+    background-color: bisque;
+}
+#middle-section {
+    background-color: aliceblue;
+}
+#bottom-section {
+    background-color: burlywood;
+}
+
+#footer{
+    clear: both;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding-bottom: 20px;
+}

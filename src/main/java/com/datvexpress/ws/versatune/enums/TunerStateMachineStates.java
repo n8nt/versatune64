@@ -1,0 +1,17 @@
+package com.datvexpress.ws.versatune.enums;
+
+public enum TunerStateMachineStates {
+    TUNER_STARTING,
+    TUNER_RESET,
+    TUNER_READY,
+    TUNER_INITIALIZING,
+    TUNER_BOOTED,
+    TUNER_INITIALIZED,
+    TUNER_ATTEMPTING_LOCK,
+    TUNER_SEARCHING_FOR_SIGNAL,
+    TUNER_DETECTED_SIGNAL,
+    TUNER_SIGNAL_LOCKED,
+    TUNER_RECEIVING_DATA,
+    TUNER_UNDEFINED
+
+}

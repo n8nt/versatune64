@@ -1,0 +1,71 @@
+spring:
+  application:
+    name:
+
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+
+  security:
+    user:
+      name: versatune
+      password: 423.0Megahertz
+
+  datasource:
+    url: jdbc:h2:file:/usr/local/apps/versatune/data/demo
+    #url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: "bobt"
+    password: "6499n8nt"
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+
+
+# threading constants
+slideShowStreamExecutor:
+  corePoolSize: 4
+  maxPoolSize: 16
+  queueCapacity: 64
+  poolTimeToLive: 60
+  poolNamePrefix: slideshow
+
+tunerStreamExecutor:
+  corePoolSize: 4
+  maxPoolSize: 16
+  queueCapacity: 64
+  poolTimeToLive: 60
+  poolNamePrefix: tuner
+
+versatune:
+  build: 202211031840
+  tunerStartScriptName: "/home/pi/dvbt/dvb-t_startTunerOnly.sh" #old - replaced by below
+  dvbt:
+    enable: true
+    debug: true
+    sim:  false
+  dvbs:
+    enable: true
+    debug: true
+    sim: false
+  slideshow:
+    enable: false
+    debug: false
+    sim: false
+  tunerconfig:
+    directory: "/usr/local/apps/versatune/"
+    filename: "tunerconfig.json"
+
+vlcoverlay: "/usr/local/apps/versatune/data/vlc_overlay.txt"
+dvbconfig: "/usr/local/apps/versatune/data/dvb-t_config.txt"
+knuckerfifo: "/usr/local/apps/versatune/data/knucker_status_fifo"
+blanktspath: "/usr/local/apps/versatune/data/blank.ts"
+combitunerpath: "/usr/local/apps/versatune/data/CombiTunerExpress"
+appspath: "/usr/local/apps/versatune"
+datapath: "/usr/local/apps/versatune/data"
+scriptspath: "/usr/local/apps/versatune/scripts"
