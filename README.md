@@ -57,14 +57,18 @@ The main steps are:
    sudo apt update
    sudo apt install git
    ```
-## Install Maven
+## Install Maven - (updated because the wget command did not work - the wget command fails)
+
  Download Apache Maven. Use the following command:
    ```
-   wget https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz -P /tmp
+   wget https://dlcdn.apache.org/maven/maven-3/3.8.7/binaries/apache-maven-3.8.7-bin.tar.gz -P /tmp
    ```
+If that command fails (it did for me) then go to [here](https://maven.apache.org/download.cgi) and download the apache-maven-3.8.7-bin.tar.gz file to /tmp.
+   
 Extract Apache Maven tar.gz file. Use the following command:
- ```sudo tar xf /tmp/apache-maven-3.8.6-bin.tar.gz -C /opt
+ ```sudo tar xf /tmp/apache-maven-3.8.7-bin.tar.gz -C /opt
  ```
+## Set up ENVIRONEMENT variables for JAVA and MAVEN 
 Set up environment variables for Maven. Create a file named /etc/profile.d/maven.sh. I used vi but, you can use nano or any editor of your choosing.
 ```
    sudo vi /etc/profile.d/maven.sh
