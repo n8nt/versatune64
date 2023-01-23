@@ -66,8 +66,9 @@ The main steps are:
 If that command fails (it did for me) then go to [here](https://maven.apache.org/download.cgi) and download the apache-maven-3.8.7-bin.tar.gz file to /tmp.
    
 Extract Apache Maven tar.gz file. Use the following command:
- ```sudo tar xf /tmp/apache-maven-3.8.7-bin.tar.gz -C /opt
- ```
+```
+sudo tar xf /tmp/apache-maven-3.8.7-bin.tar.gz -C /opt
+```
 ## Set up ENVIRONEMENT variables for JAVA and MAVEN 
 Set up environment variables for Maven. Create a file named /etc/profile.d/maven.sh. I used vi but, you can use nano or any editor of your choosing.
 ```
