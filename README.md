@@ -1,6 +1,7 @@
 # Versatune Receiver #
 
 This README would normally document whatever steps are necessary to get your application up and running.
+These instructions are for use with the 64-bit OS.
 
 ### What is this repository for? ###
 
@@ -76,9 +77,9 @@ Set up environment variables for Maven. Create a file named /etc/profile.d/maven
 ```
 After the file is created, insert the following. 
 ```
-   export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-armhf
-   export M2_HOME=/opt/apache-maven-3.8.6
-   export MAVEN_HOME=/opt/apache-maven-3.8.6
+   export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64
+   export M2_HOME=/opt/apache-maven-3.8.7
+   export MAVEN_HOME=/opt/apache-maven-3.8.7
    export PATH=${M2_HOME}/bin:${PATH}
 ```
 Make the maven.sh file executable
