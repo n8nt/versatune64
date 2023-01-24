@@ -100,6 +100,8 @@ $ mvn --version
 
 ## Structure
 Create a structure like this on the PI with the following folders
+The files that need to be stored in the folders named below are contained in the project's Documentation folder in the structure.zip file.
+
 
 /usr/local/apps/versatune
 
@@ -125,3 +127,4 @@ The pippio must be installed. This can be done with the following commands:
 sudo apt-get update
 sudo apt-get install pigpio python-pigpio python3-pigpio
 ```
+This is documented [here](http://abyz.me.uk/rpi/pigpio/download.html)
