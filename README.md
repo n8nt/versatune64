@@ -117,3 +117,11 @@ Create a structure like this on the PI with the following folders
 The application depends on GPIO from PI4J. Download these from teh PifJ Download repository which can be found [here](https://pi4j.com/download/)
 I just downloaded the zip file from [here](https://github.com/Pi4J/download/raw/main/pi4j-2.2.1.zip)
 After unzipping move the files to /usr/local/apps/versatune 
+
+
+## VERY IMPORTANT ##
+The pippio must be installed. This can be done with the following commands:
+```
+sudo apt-get update
+sudo apt-get install pigpio python-pigpio python3-pigpio
+```
