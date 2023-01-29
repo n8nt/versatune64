@@ -4,6 +4,7 @@ import com.datvexpress.ws.versatune.config.VersatuneStartupConfig;
 import com.datvexpress.ws.versatune.enums.ScannerControl;
 import com.datvexpress.ws.versatune.enums.TunerStateMachineEvents;
 import com.datvexpress.ws.versatune.enums.TunerStateMachineStates;
+import com.datvexpress.ws.versatune.enums.TunerStatus;
 import com.datvexpress.ws.versatune.model.*;
 import com.datvexpress.ws.versatune.pi4j.Pi4jMinimalBT;
 import com.datvexpress.ws.versatune.screenutils.DisplayMessage;
@@ -56,6 +57,8 @@ public class DvbtWorker implements Runnable {
 
     private final Pi4jMinimalBT gpioService;
 
+    private final TunerModeMap tunerModeMap;
+
     public DvbtWorker(
             DisplayMessage displayMessage,
             ChannelService chanService,
@@ -69,6 +72,7 @@ public class DvbtWorker implements Runnable {
             TunerEventMap eventMap,
             TunerStateMap stateMap,
             StateTruthTable truthTable,
+            TunerModeMap tunerModeMap,
             Pi4jMinimalBT gpioService,
             @Qualifier("threadPoolExecutor") TaskExecutor executor
     ) {
@@ -86,6 +90,7 @@ public class DvbtWorker implements Runnable {
         this.stateMap = stateMap;
         this.stateTable = truthTable;
         this.gpioService = gpioService;
+        this.tunerModeMap = tunerModeMap;
     }
 
     List<String> allowedExtensions = Arrays.asList("jpeg", "mp4", "png", "jpg", "gif");
@@ -334,6 +339,7 @@ public class DvbtWorker implements Runnable {
                             context.setSymbolRate(String.valueOf(tcr.getSymbolRate()));
                             context.setBandwidth(String.valueOf(tcr.getBandwidth()));
                             context.setInputDevice(String.valueOf(tcr.getInputDevice()));
+                            context.setTunerMode(tunerModeMap.getModeFromDeviceInput(tcr.getInputDevice()));
                             context.setCurrentChannelIdInUse(tcr.getId());
                         }
                         // I think we need to change the ScannerControl to point to the new channel now
@@ -793,7 +799,9 @@ public class DvbtWorker implements Runnable {
             Just calls the original with th parameters
     */
     private int executeStartUpForCombituner(VersatuneContext context) {
-        return executeStartUpForCombituner(context.getFrequency(),
+        return executeStartUpForCombituner(
+                context.getTunerMode(),
+                context.getFrequency(),
                 context.getSymbolRate(),
                 context.getBandwidth(),
                 context.getOverlayPath(),
@@ -807,7 +815,8 @@ public class DvbtWorker implements Runnable {
         We might have to update a file here instead of passing the args. I think I'm going to look
         at trying a few other things. (We can use the VersatuneContext object to pass the args - RFU)
     */
-    private int executeStartUpForCombituner(String frequency,
+    private int executeStartUpForCombituner(String mode,
+                                            String frequency,
                                             String symbolRate,
                                             String bandwidth,
                                             String overlayPath,
@@ -916,13 +925,17 @@ public class DvbtWorker implements Runnable {
         cmdList.clear();
         // full path to shell script
         cmdList.add(String.format("%s/scripts/runCombiTunerExpress.sh", appPath));
-        cmdList.add("dvbt");
+        cmdList.add(mode); //cmdList.add("dvbt");
         cmdList.add(frequency);
         cmdList.add(bandwidth);
+
         // full path to CombiTunerExpress
         cmdList.add(String.format("%s/data/CombiTunerExpress", appPath));
         // full path to fifo
         cmdList.add(String.format("%s/data/knucker_status_fifo", appPath));
+
+        // symbol rate (used by dvbs)
+        cmdList.add(symbolRate);
 
         ProcessBuilder pb = new ProcessBuilder(cmdList);
         try {
@@ -941,7 +954,7 @@ public class DvbtWorker implements Runnable {
 
 
         long elapsed = System.currentTimeMillis() - startTime;
-        logger.info("Elapsed Time to start Combituner iw " + elapsed + " milliseconds.");
+        logger.info("Elapsed Time to start Combituner is " + elapsed + " milliseconds.");
         return result;
     }
 

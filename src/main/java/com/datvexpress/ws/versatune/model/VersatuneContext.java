@@ -45,6 +45,8 @@ public class VersatuneContext {
     private String symbolRate;
     // input device (dvbt, dvbs, usb etc. - get from the channel data from the DB
     private String inputDevice;
+    // mode to pass into Combituner - this is translated from the inputDevice
+    private String tunerMode;
     // get some other data from the channel
     private String pidv;
     private String pida;
