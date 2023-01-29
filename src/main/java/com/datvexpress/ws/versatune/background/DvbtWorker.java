@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -259,7 +260,8 @@ public class DvbtWorker implements Runnable {
 
                 String status = scr.getStatus();
                 if ((status.equals(ScannerControl.SLIDESHOW_RUNNING.name()) && enabledChannelCount == 0) ||
-                        context.getConsecutiveResetCount() > 1) {
+                        context.getConsecutiveResetCount() > 1 ||
+                        context.getConsecutiveResetIdleCount() > 2) {
                     // then start up slide show unless it is already running
                     if (!context.getVlcRunningForSlideShow()) {
                         context.setDisplayWanted(false);
@@ -273,10 +275,16 @@ public class DvbtWorker implements Runnable {
                         int result = doStartSlideShow(audioDevice, appPath, context);
                         if (result != 900) {
                             logger.error("Tried to start slide show but got an error. Might not be running.");
+                        }else{
+                            context.resetConsecutiveResetIdleCount();
+                            scr.setStatus(ScannerControl.SLIDESHOW_RUNNING.name());
+                            scannerService.save(scr);
                         }
                     }
                 } else {
                     context.setDisplayWanted(true);
+                    if( scr.getStatus().equals(ScannerControl.RESET_IDLE.name()))
+                        context.bumpConsecutiveResetIdleCount();
                     // NTM: Should we pick a status here from the enabled channel list?
 
                 }

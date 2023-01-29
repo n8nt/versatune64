@@ -112,8 +112,12 @@ public class VersatuneContext {
     private Boolean vlcRunningForSlideShow;
     private int consecutiveResetCount;
 
+    // Slide Show Control
+    private int consecutiveResetIdleCount;
 
 
+    public int bumpConsecutiveResetIdleCount() { return ++this.consecutiveResetIdleCount;}
+    public void resetConsecutiveResetIdleCount() { this.consecutiveResetIdleCount = 0;}
 
     public int bumpConsecutiveNoData(){
         return ++this.consecutiveNoData;
