@@ -41,6 +41,7 @@ public class SecurityConfig {
             "/csa/api/token",
             // Actuators
             "/actuator/**",
+            "/status",
             "/health/**"
     };
 
@@ -61,7 +62,8 @@ public class SecurityConfig {
         "v3",
         "/save",
         "/new",
-        "/h2-console"
+        "/h2-console",
+        "/status"
 
     };
 
